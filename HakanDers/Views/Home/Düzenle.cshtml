@@ -1,0 +1,41 @@
+﻿@using HakanDers.Models.Entity
+@model Users
+@{
+    ViewBag.Title = "Düzenle";
+}
+
+<h2>Düzenle</h2>
+
+
+<form class="form-group" method="post">
+
+    <div>
+
+        <label>
+            Kisi Id
+        </label>
+        <input class="form-control" type="text" name="UserId" value="@Model.UserId" />
+
+    </div>
+    <div>
+
+        <label>
+            Kisi Id
+        </label>
+        <input class="form-control" type="text" name="UserName" value="@Model.UserName" />
+
+    </div>
+    <div>
+
+        <label>
+            Kisi Id
+        </label>
+        <input class="form-control" type="text" name="UserSurname" value="@Model.UserSurname" />
+
+    </div>
+    <div>
+        <button class="btn btn-primary"> Güncelle</button>
+
+    </div>
+
+</form>

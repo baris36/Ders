@@ -1,0 +1,43 @@
+﻿
+@using HakanDers.Models.Entity
+@model List<Users>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Kullanıcı Id</th>
+            <th>Kullanıcı Adı</th>
+            <th>Kullanıcı Soyadı</th>
+            <th>Düzenle</th>
+            <th>Sil</th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var kisi in Model)
+        {
+            <tr>
+
+                <th>@kisi.UserId</th>
+                <td>@kisi.UserName</td>
+                <td>@kisi.UserSurname</td>
+                <td><a class="btn btn-primary" href="/Home/Düzenle/@kisi.UserId">Güncelle</a></td>
+                <td><a class="btn btn-danger" href="/Home/Sil/@kisi.UserId">Sil</a></td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+<a href="/Home/Ekle" class="btn btn-success">Yeni Kişi Ekle</a>

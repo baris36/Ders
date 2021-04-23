@@ -1,0 +1,13 @@
+4 katmana göre anlatılacaksa 
+uweb(projenin kendisi)
+business layer(iş katmanı)
+dataaccess layer(veritabanı kısımlarının yapıkldığı alanlar)
+Entities layer(tabloların class şeklinde tanımlandığı alandır.)
+
+çalışma planı 
+ilk web kısnına bir istek geldiğinde iş katmanını gider yaılacak iş varsa kontrolünü yapar ondan sonra dataaccess layer katmanına gider 
+gerekli işlemi yapar ve web alanına getirir.
+web alanı enitities ve businesss layeri tanir.
+business alanı entities ve dataaccess alaının tanır.
+dataaccess alanı işe entities alanını tanır.
+

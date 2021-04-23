@@ -1,0 +1,17 @@
+
+bunu contextin içine yaz
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=BARIS\\SQLEXPRESS;database=CoreDb;Integrated Security=true;");
+        }
+
+
+daha sonra komut satırından
+
+add-migration deneme
+sonra
+update-database
+sonra oluşuyori...
+
+
+

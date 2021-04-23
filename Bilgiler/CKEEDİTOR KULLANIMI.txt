@@ -1,0 +1,12 @@
+1-)ilk önce ckeditorü indiriyoruz kendi sitesinden.
+2-)sonra projemizin content klasörüne alıyoruz.
+3-)daha sonra kullanacağımız layoutta hem script dosyasını hemde css dosyasını alıyoruz.
+4-)kulllanacağımız değişkende <textarea name="Description" class="ckeditor">@Model.Description</textarea> şeklinde tanımlıyoruz.
+
+en üstede 
+<script type="text/javascript">
+
+    CKEDITOR.replace('editor')
+
+</script>
+kullanıyoruz...

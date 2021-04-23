@@ -1,0 +1,12 @@
+Partialviewin 2 kullanımı vardır.
+1-)Veritabanında herhangi bir veri çekmeyeceksek bir tane partialview tanımlayıp içindeki bilgileri doldurduktan sonra kullanacağımız yerde
+@Html.Partial("Iletisim");
+2-)Eğer veritabanından veri çekilecekse  bu şekilde tanımlanır.
+  public PartialViewResult HizmetPartial()
+        {
+            return PartialView(db.Hizmetler.ToList());
+        }
+daha sonra kullanacağımız yerde
+ @{
+        Html.RenderAction("HizmetPartial","Home"); 
+        }

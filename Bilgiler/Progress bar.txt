@@ -1,0 +1,4 @@
+ilerleme çubuğu olarak geçer 
+
+
+javascripte splice,slice,split fonksiyonları elimizdeki bir veriyi belli koşullar olarak bölmeye yarar 

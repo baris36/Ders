@@ -1,0 +1,26 @@
+1-)proje derlendiğinde ilk olarak program.cs dosyasına uğrar daha sonra 
+
+Startup dosyasına elerek ilgili middleware lere bakarak ona göre işlem yapmaktadır.
+
+
+ilk olarak configureservices icine bir servis ekleyerek devam etmektedir.
+services.AddControllerWithViews();
+ondan sonra configure gelerek 
+app.useendpoint içine bir
+endpoint ekleyerek 
+endpoint.MapControllerRoute(
+name:"default",
+pattern:"{controller=home}/{action=Index}"
+); 	
+ 
+
+2-)eğer yeni bir route yazmak istiyorsanız örnek olarak;
+  endpoints.MapControllerRoute(
+                    name: "kisi",
+                    pattern: "deneme",
+                    defaults: new { controller = "Home", action = "Index" }
+
+                    ) ;
+
+3-) Eğer controllerda route yazmak istiyorsanız
+ [Route("Deneme/[action]")]

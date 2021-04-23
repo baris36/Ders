@@ -1,0 +1,7 @@
+Scaffold-DbContext "Server=BARIS\SQLEXPRESS;Database=CoreDb;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+  public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<CoreDbContext>(_ => _.UseSqlServer("Server=BARIS\\SQLEXPRESS;Database=CoreDb;Trusted_Connection=True;"));
+            services.AddControllersWithViews();
+        }

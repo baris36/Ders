@@ -1,0 +1,141 @@
+1-)COntrollerin içi 
+
+
+  public ActionResult Edit(int id, Kimlik  kimlik,HttpPostedFileBase logo)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var km = db.Kimlik.Where(x => x.KimlikId == id).SingleOrDefault();
+                if (logo!=null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath(kimlik.LogoURL)))
+                    {
+                        System.IO.File.Delete(Server.MapPath(kimlik.LogoURL));
+
+                    }
+                    WebImage img = new WebImage(logo.InputStream);
+                    FileInfo imginfo = new FileInfo(logo.FileName);
+                    string logoname = Guid.NewGuid().ToString() + imginfo.Extension;
+                    img.Resize(300, 200);
+                    img.Save("~/Uploads/Kimlik/" + logoname);
+                    km.LogoURL = "/Uploads/Kimlik/" + logoname;
+
+                    //var güncelle = db.Blog.Where(d => d.BlogID == id).SingleOrDefault();
+                    //if (foto != null)
+                    //{
+                    //    if (System.IO.File.Exists(Server.MapPath(güncelle.Foto)))
+                    //    {
+                    //        System.IO.File.Delete(Server.MapPath(güncelle.Foto));
+                    //    }
+
+                    //    WebImage webImage = new WebImage(foto.InputStream);
+                    //    FileInfo fotoInfo = new FileInfo(foto.FileName);
+                    //    string yenifoto = Guid.NewGuid().ToString() + fotoInfo.Extension;
+                    //    webImage.Resize(800, 350);s
+                    //    webImage.Save("~/Uploads/" + yenifoto);
+                    //    güncelle.Foto = "/Uploads/" + yenifoto;
+                    //    güncelle.BlogBaslik = blog.BlogBaslik;
+                    //    güncelle.BlogIcerik = blog.BlogIcerik;
+                    //    güncelle.BlogOkunmaSayisi = blog.BlogOkunmaSayisi;
+                    //    güncelle.BlogOkunmaSüresi = blog.BlogOkunmaSüresi;
+                    //    db.SaveChanges();
+
+
+                    //    return RedirectToAction("Index");
+
+
+
+
+
+                    }
+                km.Title = kimlik.Title;
+                km.Description = kimlik.Description;
+                km.Keywords = kimlik.Keywords;
+                km.Unvan = kimlik.Unvan;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+
+2-)Viewin içi 
+
+
+@model Blog_Deneme.Models.Kimlik
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript">
+
+    CKEDITOR.replace('editor')
+
+</script>
+
+@using (Html.BeginForm("Edit","Kimlik",FormMethod.Post,new { enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Kimlik</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.KimlikId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="Description" class="ckeditor">@Model.Description</textarea>
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LogoURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control" type="file" name="logo" accept=".jpeg,.jpg,.png" />
+                @Html.ValidationMessageFor(model => model.LogoURL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Unvan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Unvan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>
+
